@@ -1,4 +1,5 @@
 import "./App.css";
+import {useState} from "react";
 
 function App() {
   return (
@@ -10,19 +11,18 @@ function App() {
 }
 
 function ListDemo() {
-  let list = ["Delhi", "Mumbai", "Calcutta"];
-  return (
+  let [list,setList]=useState(["delhi"]);
+  let addCity=()=>{
+    let newList=[...list,"mumbai"];
+    setList(newList);
+  }
+  return(
     <>
-      {list.map((item) => (
-        <>
-          <h1>Hello</h1>
-          <h1>Welcome</h1>
-        </>
-      ))}
-      {list.map((item) => "Hello " + item)}
-      {list.map((item) => item)}
+    <h1>List</h1>
+    <input type="button" value="ClickMe" onClick={addCity} />
+    {list.map((item)=>"Hello"+item)}
     </>
-  );
+  )
 }
 
 export default App;
