@@ -4,17 +4,23 @@ function App() {
   return (
     <>
       <h1>My App</h1>
-      <MessageDemo name="Vaibhav" email="1" />
-      <MessageDemo email="2" name="Vaibhavv" />
+      <ListDemo />
     </>
   );
 }
 
-function MessageDemo({ email, name }) {
+function ListDemo() {
+  let list = ["Delhi", "Mumbai", "Calcutta"];
   return (
     <>
-      <h1>{name}</h1>
-      <h1>{email}</h1>
+      {list.map((item) => (
+        <>
+          <h1>Hello</h1>
+          <h1>Welcome</h1>
+        </>
+      ))}
+      {list.map((item) => "Hello " + item)}
+      {list.map((item) => item)}
     </>
   );
 }
