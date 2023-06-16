@@ -1,5 +1,5 @@
 import "./App.css";
-import {useState} from "react";
+import { useRef, useState } from "react";
 
 function App() {
   return (
@@ -11,18 +11,39 @@ function App() {
 }
 
 function ListDemo() {
-  let [list,setList]=useState(["delhi"]);
-  let addCity=()=>{
-    let newList=[...list,"mumbai"];
+  let [list, setList] = useState(["delhi"]);
+  let inputRef = useRef();
+  let addCity = () => {
+    let newList = [...list, inputRef.current.value];
     setList(newList);
-  }
-  return(
+    inputRef.current.value = "";
+  };
+  return (
     <>
-    <h1>List</h1>
-    <input type="button" value="ClickMe" onClick={addCity} />
-    {list.map((item)=>"Hello"+item)}
+      <h1>List</h1>
+      <input type="text" id="myinput" ref={inputRef} placeholder="enter text" />
+      <input type="button" value="ClickMe" onClick={addCity} />
+      {list.map((item) => (
+        <MessageDemo city={item} />
+      ))}
     </>
-  )
+  );
+}
+function MessageDemo({ city }) {
+  return (
+    <>
+      <h1>{city}</h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere sint,
+        vitae modi expedita consequuntur doloribus possimus suscipit neque minus
+        deserunt?
+      </p>
+      <div>
+        <input type="button" value="&#128077;" />
+        <input type="button" value="&#128078;" />
+      </div>
+    </>
+  );
 }
 
 export default App;
